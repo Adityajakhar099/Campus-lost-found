@@ -1,0 +1,136 @@
+.detail-page {
+  background: #f9f9ff;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card */
+.detail-card {
+  background: white;
+  max-width: 950px;
+  width: 100%;
+  display: flex;
+  gap: 32px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(90, 46, 166, 0.15);
+  padding: 30px;
+}
+
+/* Image */
+.detail-image img {
+  width: 360px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Info */
+.detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-info h2 {
+  color: #5a2ea6;
+  margin-bottom: 6px;
+}
+
+/* Description */
+.desc {
+  color: #555;
+  margin: 15px 0 22px;
+  line-height: 1.6;
+}
+
+/* Rows */
+.detail-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.label {
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.value {
+  flex: 1;
+}
+
+/* Badge */
+.badge {
+  background: #ede7ff;
+  color: #5a2ea6;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Claim Button */
+.claim-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  background: #5a2ea6;
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.claim-btn:hover {
+  background: #4a2394;
+  transform: translateY(-1px);
+}
+/* Action Buttons Row */
+.action-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Previous / Next Buttons */
+.nav-btn {
+  background: #f3efff;
+  color: #5a2ea6;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #e4dcff;
+  transform: translateY(-1px);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Badge for Found items */
+.badge.found {
+  background: #e7f6ed; /* light green background */
+  color: #2e7d32;      /* green text */
+}

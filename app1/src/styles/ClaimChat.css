@@ -1,0 +1,73 @@
+.claim-chat-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.chat-box {
+  border: 1px solid #ddd;
+  height: 400px;
+  overflow-y: auto;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #fafafa;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message.claimer {
+  text-align: left;
+  color: #333;
+}
+
+.chat-message.finder {
+  text-align: right;
+  color: #0a58ca;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+}
+
+.chat-input button {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.approve-btn {
+  margin-top: 20px;
+  background: #198754;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+.chat-box {
+  max-width: 700px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.message {
+  margin: 8px 0;
+}
+
+.message.finder {
+  text-align: right;
+  color: green;
+}
+
+.message.claimer {
+  text-align: left;
+  color: blue;
+}

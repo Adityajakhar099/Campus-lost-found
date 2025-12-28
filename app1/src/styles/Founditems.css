@@ -1,0 +1,84 @@
+/* Container */
+.reported-page {
+  padding: 40px;
+  background: #f9f9ff;
+  min-height: 100vh;
+}
+
+/* Page title */
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  color: #5a2ea6;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* No items message */
+.no-items {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+}
+
+/* Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* Card */
+.found-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(90, 46, 166, 0.15);
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.found-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Image */
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Content */
+.card-content {
+  padding: 16px;
+}
+
+.card-content h3 {
+  color: #5a2ea6;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.description {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* Footer row */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #666;
+}
+
+/* Status badge for Found Items */
+.status.found {
+  background: #e7f6ed; /* light green */
+  color: #2e7d32;      /* green text */
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}

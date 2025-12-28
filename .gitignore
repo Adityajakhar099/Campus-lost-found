@@ -17,3 +17,15 @@ yarn-debug.log*
 
 # OS files
 .DS_Store
+
+# frontend
+app1/node_modules
+app1/.env
+
+# backend
+backend/node_modules
+backend/.env
+
+# general
+.env
+node_modules

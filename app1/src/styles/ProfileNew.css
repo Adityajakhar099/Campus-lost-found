@@ -1,0 +1,280 @@
+/* ===== PAGE CONTAINER ===== */
+.profile-new-container {
+  padding: 40px 6%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ===== USER CARD ===== */
+.user-card {
+  background: linear-gradient(
+    135deg,
+    rgba(120, 70, 220, 0.9),
+    rgba(60, 20, 120, 0.95)
+  );
+  padding: 30px;
+  border-radius: 26px;
+  box-shadow: 0 0 60px rgba(155, 89, 255, 0.5);
+}
+
+.user-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.user-card p {
+  margin-top: 6px;
+  opacity: 0.85;
+  font-size: 15px;
+}
+
+/* ===== GRAPH CARD ===== */
+.graph-card {
+  background: rgba(25, 10, 50, 0.85);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 0 40px rgba(155, 89, 255, 0.35);
+}
+
+.graph-card h3 {
+  margin-bottom: 18px;
+  color: #e8d9ff;
+  font-weight: 600;
+}
+
+/* ===== STATS ROW ===== */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* ===== STAT BOX ===== */
+.stat-box {
+  background: rgba(40, 20, 80, 0.9);
+  border-radius: 22px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: inset 0 0 30px rgba(155, 89, 255, 0.3),
+              0 0 30px rgba(155, 89, 255, 0.35);
+}
+
+.stat-box h4 {
+  font-size: 36px;
+  color: #ffffff;
+}
+
+.stat-box p {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 800px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-new-container {
+    padding: 30px 5%;
+  }
+}
+.claims-container {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .claims-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== APPROVAL ANIMATION ===== */
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(108, 92, 231, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(108, 92, 231, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(108, 92, 231, 0.6);
+  }
+}
+
+.pulse {
+  animation: pulseGlow 1.6s infinite;
+}
+
+/* Approved success glow */
+@keyframes approvedFlash {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(46, 204, 113, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 35px rgba(46, 204, 113, 0.9);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(46, 204, 113, 0.4);
+  }
+}
+
+.approved-glow {
+  animation: approvedFlash 0.9s ease-in-out;
+}
+
+.approved-text {
+  margin-top: 8px;
+  color: #2ecc71;
+  font-weight: 600;
+}
+/* ===============================
+   MY CLAIMS & CLAIM REQUESTS AREA
+================================ */
+
+.claims-wrapper {
+  background: rgba(18, 8, 35, 0.88);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 0 45px rgba(155, 89, 255, 0.25);
+}
+
+/* Titles */
+.claims-wrapper h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f1e9ff;
+  margin-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+}
+
+/* ===============================
+   INDIVIDUAL CLAIM CARD
+================================ */
+
+.claim-card {
+  background: linear-gradient(
+    145deg,
+    rgba(60, 30, 110, 0.85),
+    rgba(35, 15, 70, 0.9)
+  );
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 22px rgba(120, 80, 255, 0.25);
+  transition: all 0.35s ease;
+}
+
+.claim-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(155, 89, 255, 0.6);
+}
+
+/* Text inside card */
+.claim-card p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+.claim-card b {
+  color: #fff;
+}
+
+/* ===============================
+   STATUS BADGE
+================================ */
+
+.claim-status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* Created */
+.claim-status.created {
+  background: #7f8c8d;
+  color: #000;
+}
+
+/* Answered (waiting approval) */
+.claim-status.answered {
+  background: #f39c12;
+  color: #000;
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.7);
+}
+
+/* Approved */
+.claim-status.approved {
+  background: #2ecc71;
+  color: #000;
+  box-shadow: 0 0 18px rgba(46, 204, 113, 0.9);
+}
+
+/* ===============================
+   APPROVED MESSAGE
+================================ */
+
+.approved-text {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2ecc71;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===============================
+   APPROVE BUTTON
+================================ */
+
+.approve-btn {
+  margin-top: 14px;
+  padding: 10px 24px;
+  border-radius: 26px;
+  border: none;
+  background: linear-gradient(135deg, #6c5ce7, #a66cff);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.approve-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 22px rgba(166, 108, 255, 0.9);
+}
+
+.approve-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.empty-text {
+  color: #aaa;
+  font-size: 14px;
+  opacity: 0.8;
+}
