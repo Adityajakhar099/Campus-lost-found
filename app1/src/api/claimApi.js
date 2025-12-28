@@ -1,36 +1,48 @@
-const BASE_URL = `${process.env.REACT_APP_API_URL}/api`;
+import API from "./config";
 
+const BASE_URL = `${API}/api`;
 
-export const createClaim = (itemId) =>
-  fetch(`${BASE}/create`, {
+export const createClaim = async (itemId, itemType) => {
+  const res = await fetch(`${BASE_URL}/claim/create`, {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ itemId }),
-  }).then(res => res.json());
+    body: JSON.stringify({ itemId, itemType }),
+  });
+  return res.json();
+};
 
-export const submitAnswers = (claimId, answers) =>
-  fetch(`${BASE}/answer`, {
+export const submitAnswers = async (claimId, answers) => {
+  const res = await fetch(`${BASE_URL}/claim/answer`, {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ claimId, answers }),
-  }).then(res => res.json());
+  });
+  return res.json();
+};
 
-export const getMessages = (claimId) =>
-  fetch(`${BASE}/chat/${claimId}`, { credentials: "include" })
-    .then(res => res.json());
+export const getMessages = async (claimId) => {
+  const res = await fetch(`${BASE_URL}/claim/chat/${claimId}`, {
+    credentials: "include",
+  });
+  return res.json();
+};
 
-export const sendMessage = (claimId, message) =>
-  fetch(`${BASE}/chat/${claimId}`, {
+export const sendMessage = async (claimId, message) => {
+  const res = await fetch(`${BASE_URL}/claim/chat/${claimId}`, {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),
-  }).then(res => res.json());
+  });
+  return res.json();
+};
 
-export const approveClaim = (id) =>
-  fetch(`${BASE}/approve/${id}`, {
+export const approveClaim = async (id) => {
+  const res = await fetch(`${BASE_URL}/claim/approve/${id}`, {
     method: "POST",
     credentials: "include",
-  }).then(res => res.json());
+  });
+  return res.json();
+};
