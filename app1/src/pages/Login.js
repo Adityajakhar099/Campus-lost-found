@@ -23,9 +23,10 @@ function Login() {
   }, []);
 
   const handleLogin = () => {
-    setLoading(true);
-    window.open("https://campus-lost-found-se43.onrender.com/auth/google", "_self");
-  };
+  setLoading(true);
+  window.location.href = `${process.env.REACT_APP_API_URL}/auth/google`;
+};
+
 
   return (
     <div className="login-container">
