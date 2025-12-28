@@ -6,10 +6,12 @@ const passport = require("passport");
 const MongoStore = require("connect-mongo").default;
 const cors = require("cors");
 const path = require("path");
+const isProduction = process.env.NODE_ENV === "production";
 
 require("./config/passport");
 
 const app = express();
+
 
 /* ---------- MongoDB ---------- */
 mongoose
@@ -29,7 +31,8 @@ app.use(express.json());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-/* ---------- Session ---------- */
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -40,16 +43,16 @@ app.use(
     }),
     cookie: {
       httpOnly: true,
-      secure: false,      // ✅ MUST be false on localhost
-      sameSite: "lax",    // ✅ works on localhost
+      secure: isProduction,              // ✅ true on Render
+      sameSite: isProduction ? "none" : "lax", // ✅ OAuth-safe
       maxAge: 24 * 60 * 60 * 1000,
     },
   })
 );
 
-
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 /* ---------- AUTH ROUTES ---------- */
 
