@@ -55,3 +55,18 @@ MongoDB Atlas (Cloud)
 Authentication
 
 Google OAuth 2.0
+
+🧪 How to Run Locally
+1️⃣ Clone Repository
+git clone https://github.com/Adityajakhar099/Campus-lost-found.git
+cd Campus-lost-found
+
+2️⃣ Backend Setup
+cd backend
+npm install
+node server.js
+
+3️⃣ Frontend Setup
+cd app1
+npm install
+npm start
