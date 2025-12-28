@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/Dashboard.css";
+import logo from "../images/logo.png";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <img src="/logo.png" alt="logo" className="nav-logo" />
+        <img src={logo} alt="Campus Lost & Found Logo" className="nav-logo" />
         <span className="nav-title">Campus Lost & Found</span>
       </div>
 
