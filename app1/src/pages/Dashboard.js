@@ -24,21 +24,26 @@ function Dashboard({ user }) {
 
   const navigate = useNavigate();
 
+  // ✅ API BASE URL (ENV-BASED)
+  const API = process.env.REACT_APP_API_URL;
+
   // 🔐 AUTH CHECK
   useEffect(() => {
-    fetch("http://localhost:5000/me", { credentials: "include" })
+    fetch(`${API}/me`, {
+      credentials: "include",
+    })
       .then((res) => {
         if (res.status === 401) navigate("/");
       })
       .catch(() => navigate("/"));
-  }, [navigate]);
+  }, [navigate, API]);
 
   // Fetch latest lost items
   useEffect(() => {
     const fetchRecentLost = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/recent-lost",
+          `${API}/api/recent-lost`,
           { credentials: "include" }
         );
         const data = await res.json();
@@ -48,14 +53,14 @@ function Dashboard({ user }) {
       }
     };
     fetchRecentLost();
-  }, []);
+  }, [API]);
 
   // Fetch latest found items
   useEffect(() => {
     const fetchRecentFound = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/recent-found",
+          `${API}/api/recent-found`,
           { credentials: "include" }
         );
         const data = await res.json();
@@ -65,7 +70,7 @@ function Dashboard({ user }) {
       }
     };
     fetchRecentFound();
-  }, []);
+  }, [API]);
 
   // Scroll reveal effects
   useEffect(() => {
@@ -108,9 +113,9 @@ function Dashboard({ user }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ FIX 2: FETCH DASHBOARD STATS (NO OTHER CHANGE)
+  // ✅ FIX 2: FETCH DASHBOARD STATS (ENV-BASED)
   useEffect(() => {
-    fetch("http://localhost:5000/api/profile/stats", {
+    fetch(`${API}/api/profile/stats`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -127,7 +132,7 @@ function Dashboard({ user }) {
         });
       })
       .catch((err) => console.error("Dashboard stats error:", err));
-  }, []);
+  }, [API]);
 
   return (
     <div className="dashboard-container">
@@ -185,9 +190,7 @@ function Dashboard({ user }) {
             <p>
               Lost an item on campus? Quickly submit a detailed report including
               item name, description, and location. Adding a clear image will
-              help others identify and return your lost item faster. Your report
-              will be visible to everyone in the community who can assist in
-              locating it.
+              help others identify and return your lost item faster.
             </p>
             <button
               className="report-btn"
@@ -211,11 +214,7 @@ function Dashboard({ user }) {
           <div className="report-text">
             <h3>Browse Items</h3>
             <p>
-              Explore all reported lost and found items across the campus. You
-              can filter by category, location, or date to quickly find items of
-              interest. If you recognize your lost item or see something that
-              belongs to someone else, you can easily contact the reporter to
-              facilitate a safe return.
+              Explore all reported lost and found items across the campus.
             </p>
             <button
               className="report-btn"
@@ -233,11 +232,7 @@ function Dashboard({ user }) {
           <div className="report-text">
             <h3>Report Found Item</h3>
             <p>
-              Found something on campus? Help reunite it with its rightful owner
-              by submitting a found item report. Include a clear image,
-              description, and location where it was found. Your contribution
-              can make a difference and ensure that lost items are returned
-              quickly and safely to their owners.
+              Found something on campus? Help reunite it with its rightful owner.
             </p>
             <button
               className="report-btn"
