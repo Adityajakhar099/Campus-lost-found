@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useSearchParams } from "react-router-dom";
 import { createClaim, submitAnswers } from "../api/claimApi";
-
+import API from "../api/config";
 
 const ClaimItem = () => {
   const { id } = useParams();
@@ -30,13 +30,13 @@ const ClaimItem = () => {
         console.log("📦 Creating claim:", { id, type });
 
         const res = await axios.post(
-          "http://localhost:5000/api/claim/create",
-          {
-            itemId: id,
-            itemType: type,
-          },
-          { withCredentials: true }
-        );
+  `${API}/api/claim/create`,
+  {
+    itemId: id,
+    itemType: type,
+  },
+  { withCredentials: true }
+);
 
         console.log("✅ Claim created:", res.data);
 
@@ -61,20 +61,19 @@ const ClaimItem = () => {
   };
 
   const submitAnswers = async () => {
-    try {
-      await axios.post(
-        "http://localhost:5000/api/claim/answer",
-        { claimId, answers },
-        { withCredentials: true }
-      );
+  try {
+    await axios.post(
+      `${API}/api/claim/answer`,
+      { claimId, answers },
+      { withCredentials: true }
+    );
 
-      alert("✅ Answers submitted successfully!");
-    } catch (err) {
-      console.error("❌ Answer submit failed:", err);
-      alert("Failed to submit answers.");
-    }
-  };
-
+    alert("✅ Answers submitted successfully!");
+  } catch (err) {
+    console.error("❌ Answer submit failed:", err);
+    alert("Failed to submit answers.");
+  }
+};
   /* ======================
      RENDER
   ====================== */

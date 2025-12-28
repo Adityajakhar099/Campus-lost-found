@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/ReportedItems.css";
 import { useNavigate } from "react-router-dom";
+import API from "../api/config";
 
 
 function ReportedItems() {
@@ -9,17 +10,17 @@ function ReportedItems() {
   const navigate = useNavigate();
 
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const res = await fetch("http://localhost:5000/api/lost-items", {
-        credentials: "include",
-      });
-      const data = await res.json();
-      setItems(data);
-    };
+useEffect(() => {
+  const fetchItems = async () => {
+    const res = await fetch(`${API}/api/lost-items`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    setItems(data);
+  };
 
-    fetchItems();
-  }, []);
+  fetchItems();
+}, []);
 
   return (
     <>
@@ -40,10 +41,10 @@ function ReportedItems() {
 >
 
                 <img
-                  src={`http://localhost:5000/uploads/${item.image}`}
-                  alt={item.itemName}
-                  className="card-img"
-                />
+  src={`${API}/uploads/${item.image}`}
+  alt={item.itemName}
+  className="card-img"
+/>
 
                 <div className="card-content">
                   <h3>{item.itemName}</h3>

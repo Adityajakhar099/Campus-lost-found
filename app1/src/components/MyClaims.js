@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import API from "../api/config";
 
 export default function MyClaims() {
   const [claims, setClaims] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/claim/sent", {
-      credentials: "include",
-    })
-      .then(res => res.json())
-      .then(setClaims);
-  }, []);
+ useEffect(() => {
+  fetch(`${API}/api/claim/sent`, {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(setClaims)
+    .catch(err => console.error("My claims fetch error:", err));
+}, []);
+
 
   return (
     <div className="claims-wrapper">

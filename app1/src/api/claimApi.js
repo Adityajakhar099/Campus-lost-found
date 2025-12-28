@@ -1,4 +1,5 @@
-const BASE = "http://localhost:5000/api/claim";
+const BASE_URL = `${process.env.REACT_APP_API_URL}/api`;
+
 
 export const createClaim = (itemId) =>
   fetch(`${BASE}/create`, {

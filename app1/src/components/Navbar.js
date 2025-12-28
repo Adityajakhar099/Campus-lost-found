@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/Dashboard.css";
 import logo from "../images/logo.png";
+import API from "../api/config";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,7 +10,7 @@ function Navbar() {
   const location = useLocation(); // get current URL path
 
   const handleLogout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
+  window.open(`${API}/auth/logout`, "_self");
   };
 
   const getActive = (path) => (location.pathname === path ? "active" : "");

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import API from "../api/config";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -7,28 +8,28 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 export default function ProfileStats() {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/profile/stats", {
-      credentials: "include",
+useEffect(() => {
+  fetch(`${API}/api/profile/stats`, {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(({ lost, found, resolved }) => {
+      // Build month-wise base structure
+      const monthData = MONTHS.map((m) => ({
+        month: m,
+        lost: 0,
+        found: 0,
+        resolved: 0,
+      }));
+
+      lost?.forEach(d => (monthData[d._id - 1].lost = d.count));
+      found?.forEach(d => (monthData[d._id - 1].found = d.count));
+      resolved?.forEach(d => (monthData[d._id - 1].resolved = d.count));
+
+      setData(monthData);
     })
-      .then(res => res.json())
-      .then(({ lost, found, resolved }) => {
-        // Build month-wise base structure
-        const monthData = MONTHS.map((m, i) => ({
-          month: m,
-          lost: 0,
-          found: 0,
-          resolved: 0,
-        }));
-
-        lost.forEach(d => (monthData[d._id - 1].lost = d.count));
-        found.forEach(d => (monthData[d._id - 1].found = d.count));
-        resolved.forEach(d => (monthData[d._id - 1].resolved = d.count));
-
-        setData(monthData);
-      })
-      .catch(err => console.error("Stats error:", err));
-  }, []);
+    .catch(err => console.error("Stats error:", err));
+}, []);
 
   if (data.length === 0) return <p>Loading activity...</p>;
 

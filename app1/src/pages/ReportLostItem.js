@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/ReportLostItem.css";
+import API from "../api/config";
 
 function ReportLostItem() {
   const navigate = useNavigate();
@@ -63,25 +64,25 @@ const handleSubmit = async (e) => {
   formData.append("image", image); // fixed
 
   try {
-    const res = await fetch("http://localhost:5000/api/report-lost", {
-      method: "POST",
-      body: formData,
-      credentials: "include", // important for session
-    });
+  const res = await fetch(`${API}/api/report-lost`, {
+    method: "POST",
+    body: formData,
+    credentials: "include", // important for session
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (!res.ok) {
-      alert(data.message || "Failed to report item");
-      return;
-    }
-
-    // ✅ Redirect after successful submission
-    navigate("/dashboard");
-  } catch (err) {
-    console.error(err);
-    alert("Server error, try again later");
+  if (!res.ok) {
+    alert(data.message || "Failed to report item");
+    return;
   }
+
+  // ✅ Redirect after successful submission
+  navigate("/dashboard");
+} catch (err) {
+  console.error(err);
+  alert("Server error, try again later");
+}
 };
 
 

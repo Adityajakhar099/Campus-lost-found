@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/FoundItem.css";
+import API from "../api/config";
 
 function ReportFoundItem() {
   const navigate = useNavigate();
@@ -61,30 +62,30 @@ function ReportFoundItem() {
     formData.append("image", image);
 
     try {
-      // ✅ Corrected backend route
-      const res = await fetch("http://localhost:5000/api/report-found", {
-        method: "POST",
-        body: formData,
-        credentials: "include", // required for session
-      });
+  // ✅ ENV-based backend route
+  const res = await fetch(`${API}/api/report-found`, {
+    method: "POST",
+    body: formData,
+    credentials: "include", // required for session
+  });
 
-      console.log("🟢 Found Item API status:", res.status);
+  console.log("🟢 Found Item API status:", res.status);
 
-      const data = await res.json();
-      console.log("🟢 Found Item API response:", data);
+  const data = await res.json();
+  console.log("🟢 Found Item API response:", data);
 
-      if (!res.ok) {
-        console.error("❌ Found Item failed:", data.message);
-        alert(data.message || "Failed to report found item");
-        return;
-      }
+  if (!res.ok) {
+    console.error("❌ Found Item failed:", data.message);
+    alert(data.message || "Failed to report found item");
+    return;
+  }
 
-      console.log("🟢 Redirecting to dashboard...");
-      navigate("/dashboard");
-    } catch (err) {
-      console.error("❌ Found Item submit error:", err);
-      alert("Server error");
-    }
+  console.log("🟢 Redirecting to dashboard...");
+  navigate("/dashboard");
+} catch (err) {
+  console.error("❌ Found Item submit error:", err);
+  alert("Server error");
+}
   };
 
   return (

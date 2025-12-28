@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import "../styles/Founditems.css";
-
+import API from "../api/config";
 
 
 
@@ -11,20 +11,20 @@ function FoundItems() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/found-items", {
-          credentials: "include",
-        });
-        const data = await res.json();
-        setItems(data);
-      } catch (err) {
-        console.error("Error fetching found items:", err);
-      }
-    };
+  const fetchItems = async () => {
+    try {
+      const res = await fetch(`${API}/api/found-items`, {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setItems(data);
+    } catch (err) {
+      console.error("Error fetching found items:", err);
+    }
+  };
 
-    fetchItems();
-  }, []);
+  fetchItems();
+}, []);
 
   return (
     <>
@@ -44,10 +44,10 @@ function FoundItems() {
                 onClick={() => navigate(`/found-item/${item._id}`)}
               >
                 <img
-                  src={`http://localhost:5000/uploads/${item.image}`}
-                  alt={item.itemName}
-                  className="card-img"
-                />
+  src={`${API}/uploads/${item.image}`}
+  alt={item.itemName}
+  className="card-img"
+/>
 
                 <div className="card-content">
                   <h3>{item.itemName}</h3>

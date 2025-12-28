@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/ItemDetail.css";
+import API from "../api/config";
 
 function ItemDetail({ type }) { // type = "lost" or "found"
   const { id } = useParams();
@@ -14,28 +15,29 @@ function ItemDetail({ type }) { // type = "lost" or "found"
   const apiType = type === "lost" ? "lost-items" : "found-items";
 
   useEffect(() => {
-    const fetchData = async () => {
-      const itemRes = await fetch(
-        `http://localhost:5000/api/${apiType}/${id}`,
-        { credentials: "include" }
-      );
-      const itemData = await itemRes.json();
-      setItem(itemData);
+  const fetchData = async () => {
+    const itemRes = await fetch(
+      `${API}/api/${apiType}/${id}`,
+      { credentials: "include" }
+    );
+    const itemData = await itemRes.json();
+    setItem(itemData);
 
-      const allRes = await fetch(`http://localhost:5000/api/${apiType}`, {
-        credentials: "include",
-      });
-      const allItems = await allRes.json();
+    const allRes = await fetch(
+      `${API}/api/${apiType}`,
+      { credentials: "include" }
+    );
+    const allItems = await allRes.json();
 
-      const ids = allItems.map((i) => i._id);
-      setAllItemIds(ids);
+    const ids = allItems.map((i) => i._id);
+    setAllItemIds(ids);
 
-      const index = ids.findIndex((itemId) => itemId === id);
-      setCurrentIndex(index);
-    };
+    const index = ids.findIndex((itemId) => itemId === id);
+    setCurrentIndex(index);
+  };
 
-    fetchData();
-  }, [id, apiType]);
+  fetchData();
+}, [id, apiType]);
 
   if (!item) return <p style={{ textAlign: "center" }}>Loading...</p>;
 
@@ -62,9 +64,9 @@ function ItemDetail({ type }) { // type = "lost" or "found"
         <div className="detail-card">
           <div className="detail-image">
             <img
-              src={`http://localhost:5000/uploads/${item.image}`}
-              alt={item.itemName}
-            />
+  src={`${API}/uploads/${item.image}`}
+  alt={item.itemName}
+/>
           </div>
 
           <div className="detail-info">

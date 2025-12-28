@@ -4,29 +4,30 @@ import ProfileStats from "../components/ProfileStats";
 import ClaimRequests from "../components/ClaimRequests";
 import MyClaims from "../components/MyClaims";
 import "../styles/ProfileNew.css";
+import API from "../api/config";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
   const [claimedCount, setClaimedCount] = useState(0);
   const [requestCount, setRequestCount] = useState(0);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/me", { credentials: "include" })
-      .then(res => res.json())
-      .then(setUser);
+useEffect(() => {
+  fetch(`${API}/me`, { credentials: "include" })
+    .then(res => res.json())
+    .then(setUser);
 
-    fetch("http://localhost:5000/api/claim/sent", {
-      credentials: "include",
-    })
-      .then(res => res.json())
-      .then(data => setClaimedCount(data.length));
+  fetch(`${API}/api/claim/sent`, {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(data => setClaimedCount(data.length));
 
-    fetch("http://localhost:5000/api/claim/received", {
-      credentials: "include",
-    })
-      .then(res => res.json())
-      .then(data => setRequestCount(data.length));
-  }, []);
+  fetch(`${API}/api/claim/received`, {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(data => setRequestCount(data.length));
+}, []);
 
   if (!user) return null;
 

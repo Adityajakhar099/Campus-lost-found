@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/Browse.css";
+import API from "../api/config";
 
 function Browse() {
   const [lostItems, setLostItems] = useState([]);
@@ -14,8 +15,8 @@ function Browse() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const lostRes = await fetch("http://localhost:5000/api/lost-items");
-        const foundRes = await fetch("http://localhost:5000/api/found-items");
+        const lostRes = await fetch(`${API}/api/lost-items`);
+        const foundRes = await fetch(`${API}/api/found-items`);
 
         const lostData = await lostRes.json();
         const foundData = await foundRes.json();

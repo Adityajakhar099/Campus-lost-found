@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { approveClaim } from "../api/claimApi";
+import API from "../api/config";
 
 export default function ClaimRequests() {
   const [claims, setClaims] = useState([]);
   const [approvingId, setApprovingId] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/claim/received", {
-      credentials: "include",
-    })
-      .then(res => res.json())
-      .then(setClaims);
-  }, []);
+  fetch(`${API}/api/claim/received`, {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(setClaims)
+    .catch(err => console.error("Claim fetch error:", err));
+}, []);
 
   const approve = async (id) => {
     setApprovingId(id);

@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import "../styles/ProfileComponents.css";
+import API from "../api/config";
 
 export default function ProfileInfo() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/me", { credentials: "include" })
-      .then(res => res.json())
-      .then(setUser);
-  }, []);
+  fetch(`${API}/me`, {
+    credentials: "include",
+  })
+    .then(res => res.json())
+    .then(setUser)
+    .catch(err => console.error("User fetch error:", err));
+}, []);
 
   if (!user) return null;
 
