@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Dashboard.css";
 import Navbar from "../components/Navbar";
+import API from "../api/config";
 
 // ✅ Import images from src/images
 import lostImg from "../images/p8193.png";
@@ -11,6 +12,7 @@ import foundImg from "../images/p8195.jpg";
 function Dashboard({ user }) {
   const [recentLostItems, setRecentLostItems] = useState([]);
   const [recentFoundItems, setRecentFoundItems] = useState([]);
+
 
   // ✅ FIX 1: ADD STATS STATE (REQUIRED)
   const [stats, setStats] = useState({
@@ -24,8 +26,11 @@ function Dashboard({ user }) {
 
   const navigate = useNavigate();
 
-  // ✅ API BASE URL (ENV-BASED)
-  const API = process.env.REACT_APP_API_URL;
+  // ✅ API BASE URL (SAFE OVERRIDE)
+const API =
+  process.env.REACT_APP_API_URL ||
+  "https://campus-lost-found-se43.onrender.com";
+
 
   // 🔐 AUTH CHECK
   useEffect(() => {
