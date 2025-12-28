@@ -24,7 +24,7 @@ function Login() {
 
   const handleLogin = () => {
     setLoading(true);
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open("https://campus-lost-found-se43.onrender.com/auth/google", "_self");
   };
 
   return (
