@@ -11,6 +11,8 @@ import foundImg from "../images/p8195.jpg";
 
 function Dashboard({ user }) {
   console.log("🔥 DASHBOARD UPDATED - VERSION CHECK");
+ 
+
 
   const [recentLostItems, setRecentLostItems] = useState([]);
   const [recentFoundItems, setRecentFoundItems] = useState([]);

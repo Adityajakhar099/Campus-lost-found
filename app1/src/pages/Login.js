@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Login.css";
+import API from "../api/config";
+
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -24,7 +26,7 @@ function Login() {
 
   const handleLogin = () => {
   setLoading(true);
-  window.location.href = `${process.env.REACT_APP_API_URL}/auth/google`;
+    window.location.href = `${API}/auth/google`;
 };
 
 
